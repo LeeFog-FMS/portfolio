@@ -1,289 +1,236 @@
-/* index.css - Estilos para a Página Inicial (Tema Elegante Gamer) */
+/* --- VARIÁVEIS DE CORES --- */
+:root {
+  --bg-body: #0b0e14;
+  --accent-mint: #00ff9d;
+  --accent-blue: #00d4ff;
+  --text-primary: #f0f5ff;
+  --text-secondary: #94a3b8;
+}
 
-/* --- ESTILOS GERAIS E CURSOR --- */
+/* --- ESTILOS BASE --- */
 body {
-    background-color: #0A0A0A; /* Um preto um pouco menos intenso que o black puro */
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fonte moderna e limpa */
-    color: #FFFFFF; /* Branco suave para texto principal */
-    font-size: 17px; /* Tamanho base para boa legibilidade */
-    line-height: 1.8; /* Espaçamento entre linhas generoso */
-    margin: 0;
-    padding: 0;
-    cursor: auto; /* Para seu cursor customizado */
-    overflow-x: hidden; /* Evita scroll horizontal acidental */
+  background-color: var(--bg-body);
+  color: var(--text-primary);
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  line-height: 1.6;
+  overflow-x: hidden;
 }
 
-/* --- CONTAINER PRINCIPAL --- */
+.map-overlay {
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background-image: url('https://www.transparenttextures.com/patterns/carbon-fibre.png'); 
+  opacity: 0.1;
+  z-index: -1;
+}
+
 .container {
-    width: 90%;
-    max-width: 1200px; /* Largura máxima */
-    margin: 0 auto; /* Centraliza */
-    padding: 0 20px;
+  max-width: 850px;
+  margin: 0 auto;
+  padding: 0 20px;
 }
 
-/* --- NAVEGAÇÃO (NO TOPO) --- */
-nav {
-    background-color: rgba(41, 19, 46, 0.85); /* Fundo da nav sutilmente transparente */
-    padding: 15px 0;
-    position: sticky; /* Faz a navegação fixar no topo ao rolar */
-    top: 0;
-    z-index: 1000; /* Garante que fique acima de outros conteúdos */
-    backdrop-filter: blur(5px); /* Efeito de vidro fosco (suporte varia entre navegadores) */
-    border-bottom: 1px solid #de004e; /* Linha verde sutil */
-}
-
-nav ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0; /* Removido padding da ul para controle total com flex */
-    display: flex;
-    justify-content: center; /* Centraliza os links */
-    align-items: center;
-}
-
-nav li {
-    margin: 0 15px; /* Espaçamento entre os links */
-}
-
+/* --- NAVEGAÇÃO --- */
+nav { padding: 30px 0; }
+nav ul { list-style: none; padding: 0; display: flex; justify-content: flex-end; gap: 25px; }
 nav a {
-    color: #FFFFFF; /* Branco suave */
-    text-decoration: none;
-    font-size: 20px; /* Tamanho dos links da navegação */
-    font-weight: 600;  /* Semi-bold para destaque */
-    text-transform: uppercase;
-    letter-spacing: 1px; /* Pequeno espaçamento entre letras */
-    padding: 8px 12px;
-    border-radius: 4px;
-    transition: color 0.3s ease, background-color 0.3s ease, transform 0.2s ease;
+  text-decoration: none;
+  color: var(--accent-mint);
+  font-family: 'Orbitron', sans-serif;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  transition: 0.3s;
+}
+nav a:hover { color: var(--accent-blue); }
+
+/* --- HEADER --- */
+header { padding-bottom: 20px; }
+
+.profile-container {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  margin-bottom: 30px;
 }
 
-nav a:hover,
-nav a.active { /* .active pode ser adicionado via JS para a página atual */
-    color: #f887ff; /* Seu azul claro para hover/ativo */
-    background-color: rgba(222, 0, 78, 0.15); /* Fundo sutil no hover */
-    transform: translateY(-2px); /* Leve elevação */
-    text-shadow: 0 0 8px #f887ff;
+.profile-img {
+  width: 140px; height: 140px;
+  border-radius: 50%;
+  border: 3px solid var(--accent-mint);
+  box-shadow: 0 0 20px rgba(0, 255, 157, 0.2);
+  object-fit: cover;
 }
 
-/* --- CABEÇALHO (HEADER COM IMAGEM, TÍTULO E CITAÇÃO) --- */
-header {
-    padding: 50px 0; /* Espaçamento vertical generoso */
-    text-align: center; /* Centraliza todo o conteúdo do header */
-    margin-top: 20px; /* Espaço após a navegação sticky */
-    position: relative;
+h1 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 2.2em;
+  margin: 0;
+  color: #fff;
 }
 
-header .center img { /* Sua imagem de perfil */
-    width: 200px; /* Tamanho da imagem de perfil */
-    height: 200px;
-    border-radius: 50%; /* Imagem redonda */
-    border: 5px solid #de004e; /* Borda verde principal */
-    box-shadow: 0 0 30px rgba(222, 0, 78, 0.7), inset 0 0 15px rgba(222, 0, 78, 0.3); /* Sombra verde "acesa" */
-    margin-bottom: 30px;
-    object-fit: cover; /* Garante que a imagem cubra o espaço sem distorcer */
+.badges { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px; }
+.badge {
+  background: rgba(0, 255, 157, 0.05);
+  border: 1px solid var(--accent-mint);
+  color: var(--accent-mint);
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-size: 10px;
+  text-transform: uppercase;
+  font-family: 'Orbitron';
 }
 
-header h1 { /* "Educadora, Pesquisadora e Gamer" */
-    color: #FFFFFF; /* Seu amarelo para o título principal */
-    font-size: 2.8em; /* Tamanho grande e impactante */
-    margin-bottom: 30px;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-family: 'Orbitron', sans-serif; /* Fonte com tema futurista/gamer. Adicione @import no topo do CSS ou link no HTML */
-                                        /* Fallback: 'Segoe UI', Tahoma, sans-serif */
-    /* Efeito de texto neon sutil */
-    text-shadow: 0 0 7px #f887ff, /* COR: Destaque Secundário (DP2) - Sombra/brilho Lilás */
-                 0 0 12px #f887ff,
-                 0 0 20px rgba(248, 135, 255, 0.6);
+.quote-box {
+  background: rgba(255, 255, 255, 0.02);
+  border-left: 3px solid var(--accent-blue);
+  padding: 15px 25px;
+  margin: 30px 0;
+  border-radius: 0 10px 10px 0;
 }
 
-/* Estilo para a citação (mantendo consistência com o que discutimos) */
-.citacao-destaque {
-    background-color: rgba(41, 19, 46, 0.8); /* Fundo do card de citação */
-    border-left: 5px solid #f887ff; /* Borda azul claro */
-    margin: 40px auto;
-    padding: 25px 30px;
-    max-width: 750px;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(248, 135, 255, 0.25); /* Sombra azul clara */
-    position: relative;
+/* --- TEXTOS JUSTIFICADOS --- */
+p { 
+  color: var(--text-secondary); 
+  font-size: 0.95em; 
+  margin: 0 0 15px 0; 
+  text-align: justify;
 }
 
-.citacao-destaque p {
-    color: #E0E0E0;
-    font-size: 1.2em;
-    line-height: 1.7;
-    text-align: center; /* Centraliza o texto da citação */
-    margin-bottom: 15px;
-    font-style: italic;
+.quote-box p { font-style: italic; text-align: justify; margin-bottom: 10px; }
+.quote-box cite { color: var(--accent-blue); font-size: 13px; font-weight: bold; text-align: right; display: block;}
+
+/* --- CARDS --- */
+.card {
+  background-color: rgba(30, 15, 40, 0.5);
+  padding: 35px;
+  border-radius: 12px;
+  margin-bottom: 40px !important;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(5px);
+  display: block;
 }
 
-.citacao-destaque cite {
-    display: block;
-    color: #de004e; /* Amarelo para o autor */
-    font-size: 1.05em;
-    text-align: right;
-    font-weight: bold;
-    font-style: normal;
-     text-shadow: 0 0 5px rgba(222, 0, 78, 0.5);
+h3 {
+  font-family: 'Orbitron', sans-serif;
+  color: var(--accent-blue);
+  font-size: 1.1em;
+  text-transform: uppercase;
+  margin-top: 0;
+  margin-bottom: 25px;
+  display: flex;
+  align-items: center;
 }
 
-.citacao-destaque::before { /* Aspas decorativas */
-    content: '“';
-    font-family: 'Times New Roman', Times, serif; /* Fonte com aspas serifadas clássicas */
-    font-size: 5em;
-    color: #f887ff;
-    position: absolute;
-    left: 10px;
-    top: -15px;
-    opacity: 0.3;
-    line-height: 1;
+.dot {
+  width: 8px; height: 8px;
+  background: var(--accent-mint);
+  margin-right: 12px;
+  border-radius: 2px;
 }
 
-/* --- CONTEÚDO PRINCIPAL (MAIN) --- */
-main {
-    padding: 30px 0;
+/* --- TIMELINE --- */
+.timeline { display: flex; flex-direction: column; gap: 20px; }
+.timeline-item { display: flex; gap: 20px; padding-bottom: 15px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+.timeline-item:last-child { border-bottom: none; }
+.year { font-family: 'Orbitron'; color: var(--accent-mint); font-size: 12px; min-width: 60px; }
+.details strong { display: block; font-size: 15px; color: var(--text-primary); }
+.details span { font-size: 13px; color: var(--text-secondary); display: block;}
+
+/* --- LISTA DE INTERESSES --- */
+.interest-list { list-style: none; padding: 0; margin-top: 20px; }
+.interest-list li { 
+  padding-left: 25px; 
+  position: relative; 
+  margin-bottom: 15px; 
+  color: var(--text-secondary); 
+  font-size: 0.95em; 
+  line-height: 1.6; 
+  text-align: justify;
+}
+.interest-list li::before { content: '>'; position: absolute; left: 0; color: var(--accent-mint); font-weight: bold; font-family: 'Orbitron'; }
+.interest-list li strong { color: var(--text-primary); }
+
+/* --- FOOTER (RODAPÉ CENTRALIZADO) --- */
+.footer-section {
+  text-align: center;
+  padding: 80px 0 60px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centraliza o conteúdo horizontalmente */
 }
 
-main section {
-    background-color: rgba(41, 19, 46, 0.7); /* Fundo para cada seção, levemente transparente */
-    padding: 35px;
-    margin-bottom: 40px;
-    border-radius: 10px;
-    border: 1px solid #321450; /* Borda sutil para as seções */
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4); /* Sombra para dar profundidade */
+.social-container {
+  margin-bottom: 40px;
+  width: 100%;
 }
 
-main section h3, /* "Sobre mim" */
-main section h4, /* "Formação" */
-main section h5 { /* "Interesses" */
-    font-family: 'Orbitron', sans-serif; /* Mesma fonte do H1 para consistência temática */
-    font-size: 2.2em; /* Tamanho dos títulos de seção */
-    margin-top: 0;
-    margin-bottom: 30px;
-    padding-bottom: 15px;
-    border-bottom-width: 3px;
-    border-bottom-style: solid; /* Linha abaixo do título da seção */
-    letter-spacing: 1.5px;
+.social-container h4 {
+  font-family: 'Orbitron', sans-serif;
+  color: var(--text-secondary);
+  font-size: 0.85em;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 40px;
+  text-align: center;
 }
 
-main section h3 { color: #de004e; border-bottom-color: #de004e; text-shadow: 0 0 8px rgba(222, 0, 78, 0.7); } /* DP1 - Rosa Choque */
-main section h4 { color: #f887ff; border-bottom-color: #f887ff; text-shadow: 0 0 8px rgba(248, 135, 255, 0.7); } /* DP2 - Lilás */
-main section h5 { color: #860029; border-bottom-color: #860029; text-shadow: 0 0 8px rgba(134, 0, 41, 0.7); } /* AE - Vinho/Bordô (usado como um terceiro destaque aqui) */
-
-main section p {
-    font-size: 1.1em; /* Tamanho do texto nas seções */
-    color: #E0E0E0; /* Cinza um pouco mais claro para melhor leitura no fundo escuro da seção */
-    text-align: justify;
-    margin-bottom: 18px;
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 80px;
 }
 
-main section p:last-child {
-    margin-bottom: 0;
+.social-link {
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  transition: 0.3s;
 }
 
-/* --- RODAPÉ --- */
-footer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding: 40px 0;
-    margin-top: 30px;
-    border-top: 1px solid #321450; /* Linha sutil no topo do rodapé */
+.social-link img {
+  width: 48px;
+  height: 48px;
+  transition: all 0.3s ease;
 }
 
-.social-links {
-    margin-bottom: 25px;
+.social-link span {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 12px;
+  color: var(--accent-mint);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 700;
+  transition: 0.3s;
 }
 
-.social-links a {
-    text-decoration: none;
-    margin: 0 15px;
-    display: inline-flex;
-    align-items: center;
-    transition: transform 0.3s ease, filter 0.3s ease;
+.social-link:hover img {
+  filter: drop-shadow(0 0 15px var(--accent-mint));
+  transform: translateY(-8px);
 }
 
-.social-links a:hover {
-    filter: drop-shadow(0 0 6px #f887ff); /* COR: Destaque Secundário (DP2) - Brilho Lilás */
-    transform: scale(1.1);
+.social-link:hover span {
+  color: var(--accent-blue);
+  text-shadow: 0 0 8px var(--accent-blue);
 }
 
-.social-links img.social-icon {
-    width: 250px; /* Ícones sociais um pouco maiores */
-    height: 250px;
-    filter: grayscale(50%) brightness(1.5); /* Efeito sutil nos ícones */
-    transition: filter 0.3s ease, transform 0.3s ease;
-}
-.social-links a:hover img.social-icon {
-    filter: grayscale(0%) brightness(1); /* Cor total no hover */
-}
-
-
-.copyright-notice p {
-    margin: 0;
-    font-size: 0.95em;
-    color: #888; /* Cinza para texto discreto */
-    letter-spacing: 0.5px;
+.copyright {
+  font-size: 12px;
+  color: #4b5563;
+  margin-top: 20px;
+  text-align: center;
+  width: 100%;
+  letter-spacing: 0.5px;
 }
 
 /* --- RESPONSIVIDADE --- */
-@media (max-width: 768px) {
-    body { font-size: 16px; }
-
-    nav ul { justify-content: space-around; } /* Espaça melhor em telas menores */
-    nav li { margin: 0 5px; }
-    nav a { font-size: 16px; padding: 6px 8px; }
-
-     header .center img { width: 150px; height: 150px; margin-bottom: 20px; border-width: 4px; }
-    header h1 { font-size: 2.2em; margin-bottom: 25px; letter-spacing: 2px; }
-    .citacao-destaque { margin: 30px auto; padding: 20px; max-width: 90%; }
-    .citacao-destaque p { font-size: 1.15em; }
-    .citacao-destaque::before { font-size: 4em; top: -10px; }
-
-    main section { padding: 25px; margin-bottom: 30px; }
-    main section h3, main section h4, main section h5 { font-size: 1.8em; margin-bottom: 20px; letter-spacing: 1px; }
-    main section p { font-size: 1em; }
-    main section .lista-interesses li { font-size: 1em; padding-left: 25px; }
-    main section .lista-interesses li::before { font-size: 1.1em; }
-
-    .social-links img.social-icon { width: 38px; height: 38px;}
-}
-
-/* --- IMPORTAÇÃO DE FONTE (Exemplo com Orbitron) --- */
-/* Adicione esta linha no TOPO do seu arquivo CSS ou
-   adicione o link da fonte no <head> do seu HTML:
-   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
-*/
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap');
-
-/* Estilos para a lista de interesses na seção 'main' */
-main section .lista-interesses {
-    list-style-type: none; /* Remove os marcadores padrão (bolinhas pretas) */
-    padding-left: 20px;    /* Adiciona um recuo à esquerda para a lista */
-    margin-top: 20px;      /* Espaço acima da lista */
-    margin-bottom: 25px;   /* Espaço abaixo da lista */
-}
-
-main section .lista-interesses li {
-    color: #E0E0E0; /* Mesma cor dos parágrafos da seção */
-    font-size: 1.1em; /* Mesmo tamanho de fonte dos parágrafos */
-    text-align: justify; /* Justifica o texto de cada item */
-    padding-left: 30px; /* Espaço à esquerda do texto do item, para o marcador customizado */
-    margin-bottom: 18px; /* Espaço entre os itens da lista */
-    position: relative; /* Necessário para posicionar o marcador customizado */
-    line-height: 1.7; /* Consistente com o line-height dos parágrafos */
-}
-
-/* Marcador customizado para os itens da lista (sutilmente gamer) */
-main section .lista-interesses li::before {
-    content: '❖'; /* Você pode usar '◆', '❖', '🎮', '>', '»' ou outro caractere Unicode */
-    position: absolute;
-    left: 0;
-    top: 0px; /* Ajuste fino vertical se necessário */
-    color: #de004e; /* Cor verde principal do seu tema para o marcador */
-    font-size: 1.2em; /* Tamanho do marcador */
-    font-weight: bold;
-    text-shadow: 0 0 5px #de004e;
+@media (max-width: 650px) {
+  .profile-container { flex-direction: column; text-align: center; }
+  .timeline-item { flex-direction: column; gap: 5px; }
+  .social-icons { gap: 40px; }
+  h1 { font-size: 1.8em; }
 }

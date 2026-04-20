@@ -3,66 +3,301 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meus Trabalhos Acadêmicos</title>
-    <link rel="stylesheet" href="project.css"> 
+    <title>Trabalhos Acadêmicos | Letícia Fernanda</title>
     <link rel="icon" href="img/logo_LF..png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Orbitron:wght@500;700&display=swap" rel="stylesheet" />
+    <style>
+        /* --- VARIÁVEIS DE CORES (Cyber-Map Theme) --- */
+        :root {
+          --bg-body: #0b0e14;
+          --accent-mint: #00ff9d;
+          --accent-blue: #00d4ff;
+          --text-primary: #f0f5ff;
+          --text-secondary: #94a3b8;
+          --card-bg: rgba(30, 15, 40, 0.5);
+        }
+
+        /* --- ESTILOS GERAIS --- */
+        body {
+          background-color: var(--bg-body);
+          color: var(--text-primary);
+          font-family: 'Inter', sans-serif;
+          margin: 0;
+          line-height: 1.6;
+          overflow-x: hidden;
+        }
+
+        /* Camada de padrão topográfico sutil */
+        .map-overlay {
+          position: fixed;
+          top: 0; 
+          left: 0; 
+          width: 100%; 
+          height: 100%;
+          background-image: url('https://www.transparenttextures.com/patterns/carbon-fibre.png'); 
+          opacity: 0.1;
+          z-index: -1;
+          pointer-events: none;
+        }
+
+        .container {
+          max-width: 850px;
+          margin: 0 auto;
+          padding: 0 20px;
+        }
+
+        /* --- NAVEGAÇÃO --- */
+        nav { 
+          padding: 30px 0; 
+        }
+
+        nav ul { 
+          list-style: none; 
+          padding: 0; 
+          display: flex; 
+          justify-content: flex-end; 
+          gap: 25px; 
+        }
+
+        nav a {
+          text-decoration: none;
+          color: var(--text-secondary);
+          font-family: 'Orbitron', sans-serif;
+          font-size: 11px;
+          letter-spacing: 2px;
+          text-transform: uppercase;
+          transition: 0.3s ease;
+        }
+
+        nav a:hover, 
+        nav a.active { 
+          color: var(--accent-mint); 
+          text-shadow: 0 0 8px var(--accent-mint); 
+        }
+
+        /* --- HEADER DA PÁGINA --- */
+        header { 
+          padding-bottom: 40px; 
+          text-align: left; 
+        }
+
+        h1 {
+          font-family: 'Orbitron', sans-serif;
+          font-size: 2em;
+          margin: 0 0 10px 0;
+          color: #fff;
+          text-transform: uppercase;
+          letter-spacing: 2px;
+        }
+
+        .header-line {
+          width: 60px;
+          height: 4px;
+          background: var(--accent-mint);
+          border-radius: 2px;
+          margin-bottom: 20px;
+        }
+
+        .intro-text {
+          color: var(--text-secondary);
+          text-align: justify;
+          font-size: 0.95em;
+          max-width: 100%; 
+        }
+
+        /* --- CARTÕES DE TRABALHOS (CARDS) --- */
+        .card {
+          background-color: var(--card-bg);
+          padding: 35px;
+          border-radius: 12px;
+          margin-bottom: 40px !important;
+          border: 1px solid rgba(255, 255, 255, 0.05);
+          backdrop-filter: blur(5px);
+          transition: transform 0.3s ease, border-color 0.3s ease;
+          display: block;
+        }
+
+        .card:hover {
+          transform: translateY(-5px);
+          border-color: rgba(0, 255, 157, 0.2);
+        }
+
+        .work-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: flex-start;
+          margin-bottom: 15px;
+          gap: 15px;
+        }
+
+        .work-category {
+          font-family: 'Orbitron', sans-serif;
+          font-size: 10px;
+          background: rgba(0, 212, 255, 0.1);
+          color: var(--accent-blue);
+          padding: 4px 10px;
+          border-radius: 4px;
+          border: 1px solid var(--accent-blue);
+          text-transform: uppercase;
+          white-space: nowrap;
+        }
+
+        h3 {
+          font-family: 'Orbitron', sans-serif;
+          color: var(--text-primary);
+          font-size: 1.1em;
+          text-transform: uppercase;
+          margin: 0;
+          line-height: 1.4;
+          text-align: left;
+        }
+
+        .work-description {
+          color: var(--text-secondary);
+          font-size: 0.95em;
+          margin: 15px 0 25px 0;
+          text-align: justify;
+          position: relative;
+          padding-left: 20px;
+        }
+
+        .work-description::before {
+          content: '>';
+          position: absolute;
+          left: 0;
+          color: var(--accent-mint);
+          font-weight: bold;
+        }
+
+        /* --- BOTÃO --- */
+        .btn-link {
+          display: inline-flex;
+          align-items: center;
+          gap: 10px;
+          background: transparent;
+          color: var(--accent-mint);
+          border: 1px solid var(--accent-mint);
+          padding: 10px 25px;
+          border-radius: 6px;
+          text-decoration: none;
+          font-family: 'Orbitron', sans-serif;
+          font-size: 11px;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+          transition: 0.3s ease;
+        }
+
+        .btn-link:hover {
+          background: var(--accent-mint);
+          color: var(--bg-body);
+          box-shadow: 0 0 15px rgba(0, 255, 157, 0.4);
+        }
+
+        /* --- RODAPÉ CENTRALIZADO --- */
+        footer {
+          text-align: center;
+          padding: 80px 0 60px 0;
+          border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .copyright {
+          font-size: 12px;
+          color: #4b5563;
+          text-align: center;
+          letter-spacing: 0.5px;
+        }
+
+        @media (max-width: 650px) {
+          h1 { font-size: 1.6em; }
+          .work-header { flex-direction: column; gap: 10px; }
+          nav ul { justify-content: center; gap: 15px; }
+          .card { padding: 25px; }
+        }
+    </style>
 </head>
 <body>
+    <div class="map-overlay"></div>
+
     <div class="container">
-        <header class="site-header">
-            <div class="site-title-container">
-                <h1>Meu Portfólio Acadêmico</h1> </div>
-            <nav>
-                <ul>
-                    <li>
-                        <a href="index.html">Início</a>
-                    </li>
-                    <li>
-                        <a href="project.html" class="active">Trabalhos Acadêmicos</a>
-                    </li>
-                    <li>
-                        <a href="contact.html">Jogos e Educação</a>
-                    </li>
-                </ul>
-            </nav>
+        <nav>
+            <ul>
+                <li><a href="index.html">Início</a></li>
+                <li><a href="project.html" class="active">Trabalhos Acadêmicos</a></li>
+                <li><a href="contact.html">Jogos e Educação</a></li>
+            </ul>
+        </nav>
+
+        <header>
+            <h1>Produção Acadêmica</h1>
+            <div class="header-line"></div>
+            <p class="intro-text">
+                Nesta seção, compartilho os resultados das minhas investigações na interseção entre Geografia, Educação e Cultura Digital. Abaixo estão listados os artigos e a dissertação que compõem a minha trajetória de pesquisa.
+            </p>
         </header>
 
         <main>
-            <h2>Publicações</h2>
-            <p>Aqui estão alguns dos meus trabalhos publicados. Clique no link para visualizar o PDF.</p>
+            <!-- Artigo Revista Foz -->
+            <article class="card">
+                <div class="work-header">
+                    <h3>O ESPAÇO URBANO E RURAL NOS MATERIAIS DE APOIO DA REDE ESTADUAL DE SÃO PAULO</h3>
+                    <span class="work-category">Artigo Científico</span>
+                </div>
+                <p class="work-description">
+                    Artigo publicado na Revista Foz (v. 8, n. 2) que realiza uma análise crítica dos slides fornecidos pela SEDUC-SP para o Ensino Médio. O trabalho discute a necessidade de abordagens mais complexas e o uso de tecnologias para a análise profunda da realidade geográfica.
+                </p>
+                <a href="https://doi.org/10.69872/revistafoz.v8i2.414" target="_blank" class="btn-link">
+                    Acessar Artigo Completo (DOI)
+                </a>
+            </article>
 
-          <div class="lista-trabalhos">
-    <article class="trabalho-item">
-        <h3>GEOGRAFIA EM JOGO: GAMIFICAÇÃO E PEDAGOGIA FREINET</h3>
-        <p>Trabalho apresentado no Congresso Brasileiro de Geógrafos (CBG) em 2024 na Universidade de São Paulo (USP).</p>
-        <a href="arquivos/Artigo_CBG_2024.pdf" target="_blank" class="link-pdf">
-            Ver PDF do Artigo
-        </a>
-    </article>
+            <!-- Artigo CBG -->
+            <article class="card">
+                <div class="work-header">
+                    <h3>GEOGRAFIA EM JOGO: GAMIFICAÇÃO E PEDAGOGIA FREINET</h3>
+                    <span class="work-category">Artigo Científico</span>
+                </div>
+                <p class="work-description">
+                    Trabalho apresentado no Congresso Brasileiro de Geógrafos (CBG) em 2024 na USP. Explora a convergência entre as técnicas de Freinet e as dinâmicas de gamificação para o ensino de Geografia.
+                </p>
+                <a href="arquivos/Artigo_CBG_2024.pdf" target="_blank" class="btn-link">
+                    Ver PDF do Artigo
+                </a>
+            </article>
 
-    <article class="trabalho-item">
-        <h3>INTEGRAÇÃO DE JOGOS DIGITAIS NO ENSINO DE GEOGRAFIA: A APLICAÇÃO DO MINECRAFT EM UM CONTEXTO EDUCACIONAL</h3>
-        <p>Dissertação de Mestrado apresentada à Universidade Federal de São Carlos (UFSCar) em 2025.</p>
-        <a href="arquivos/Dissertacao_Leticia_2025.pdf" target="_blank" class="link-pdf">
-            Ver PDF da Dissertação
-        </a>
-    </article>
+            <!-- Dissertação de Mestrado -->
+            <article class="card">
+                <div class="work-header">
+                    <h3>INTEGRAÇÃO DE JOGOS DIGITAIS NO ENSINO DE GEOGRAFIA: A APLICAÇÃO DO MINECRAFT EM UM CONTEXTO EDUCACIONAL</h3>
+                    <span class="work-category">Dissertação de Mestrado</span>
+                </div>
+                <p class="work-description">
+                    Pesquisa-ação realizada com estudantes do Ensino Médio técnico. O estudo analisa o Minecraft como ferramenta pedagógica para a compreensão das transformações espaciais e a ressignificação de conceitos como território e paisagem, revelando aumento significativo na motivação e na aprendizagem colaborativa.
+                </p>
+                <a href="https://repositorio.ufscar.br/items/c5d25480-a10c-4a8d-a5cd-ea4a9615cd98" target="_blank" class="btn-link">
+                    Acessar no Repositório Institucional
+                </a>
+            </article>
 
-    <article class="trabalho-item">
-        <h3>MAPAS, PIXELS E APRENDIZADO: O USO DO MINECRAFT PARA O ENSINO DE GEOGRAFIA</h3>
-        <p>Artigo publicado na Revista Espaço de Diálogo e Desconexão (REDD) em 2025.</p>
-        <a href="arquivos/Artigo_Mapas_Pixels_2025.pdf" target="_blank" class="link-pdf">
-            Ver PDF do Artigo
-        </a>
-    </article>
-</div>
+            <!-- Artigo REDD -->
+            <article class="card">
+                <div class="work-header">
+                    <h3>MAPAS, PIXELS E APRENDIZADO: O USO DO MINECRAFT PARA O ENSINO DE GEOGRAFIA</h3>
+                    <span class="work-category">Artigo Publicado</span>
+                </div>
+                <p class="work-description">
+                    Publicado na Revista REDD (2025), este artigo analisa a aplicação do Minecraft no Ensino Médio sob a ótica da pesquisa-ação. O estudo demonstra como a construção de mundos virtuais facilita a assimilação de conteúdos sobre intervenções humanas no espaço, promovendo habilidades como pensamento crítico, criatividade e colaboração.
+                </p>
+                <a href="https://periodicos.fclar.unesp.br/redd/article/view/20195" target="_blank" class="btn-link">
+                    Acessar Artigo Completo (Unesp)
+                </a>
+            </article>
         </main>
 
         <footer>
-            <p>&copy; 2026 Letícia Fernanda. Todos os direitos reservados.</p>
+            <p class="copyright">© 2026 Letícia Fernanda | Educação, Geografia e Tecnologia</p>
         </footer>
     </div>
-
-        <script src="script.js"></script>
 </body>
 </html>
