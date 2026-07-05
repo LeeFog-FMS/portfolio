@@ -56,11 +56,16 @@ header { padding-bottom: 20px; }
 }
 
 .profile-img {
-  width: 140px; height: 140px;
+  width: 140px; 
+  height: 140px;
   border-radius: 50%;
   border: 3px solid var(--accent-mint);
   box-shadow: 0 0 20px rgba(0, 255, 157, 0.2);
   object-fit: cover;
+
+  /* --- ADICIONE AS LINHAS ABAIXO PARA MELHORAR A NITIDEZ --- */
+  image-rendering: -webkit-optimize-contrast; /* Para navegadores baseados em Chromium/Safari */
+  image-rendering: crisp-edges;               /* Para o Firefox */
 }
 
 h1 {
